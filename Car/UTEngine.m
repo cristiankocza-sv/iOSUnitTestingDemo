@@ -7,7 +7,21 @@
 //
 
 #import "UTEngine.h"
+#import "UTSparkPlug.h"
 
 @implementation UTEngine
 
+- (id)initWithSparkPlugs:(NSArray*)sparkPlugs {
+    if(self = [super init]) {
+        _sparkPlugs = sparkPlugs;
+    }
+    return self;
+}
+
+- (BOOL)ignite {
+    for(UTSparkPlug *sparkPlug in self.sparkPlugs) {
+        if(![sparkPlug sparkle]) return NO;
+    }
+    return YES;
+}
 @end

@@ -8,13 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "UTCarRadio.h"
+#import "UTEngine.h"
 
 @interface UTCar : NSObject
 
-@property(nonatomic,retain,readonly) UTCarRadio *radio;
+@property(nonatomic,assign,readonly) BOOL isStarted;
+@property(nonatomic,strong,readonly) UTEngine *engine;
+@property(nonatomic,strong,readonly) UTCarRadio *radio;
 
-- (id)initWithRadio:(UTCarRadio*)radio;
+- (id)initWithEngine:(UTEngine*)engine radio:(UTCarRadio*)radio;
 
-- (void)start;
-- (BOOL)changeRadioStationTo:(NSString*)stationName;
+/**
+ * Asks the engine to ignite.
+ */
+- (BOOL)start;
+
+/**
+ * Changes the radio station. Requires car to be started.
+ * Retrieves the frequency from RadioStreamList and if received any,
+ * asks the radio to set the freq.
+ */
+- (void)changeRadioStationTo:(NSString*)stationName;
 @end

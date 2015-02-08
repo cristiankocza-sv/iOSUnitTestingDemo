@@ -10,4 +10,13 @@
 
 @interface UTEngine : NSObject
 
+@property(nonatomic,strong,readonly) NSArray *sparkPlugs;
+
+- (id)initWithSparkPlugs:(NSArray*)sparkPlugs;
+
+/**
+ * Ignites the engine. Asks all spark plugs to sparkle, returns YES only
+ * if all spark plugs sparkle.
+ */
+- (BOOL)ignite;
 @end

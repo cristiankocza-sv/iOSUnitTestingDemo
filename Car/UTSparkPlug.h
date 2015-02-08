@@ -10,4 +10,9 @@
 
 @interface UTSparkPlug : NSObject
 
+/**
+ * Name self-documenting :)
+ */
+- (BOOL)sparkle;
+
 @end

@@ -24,9 +24,22 @@
 
 @end
 
+@interface UTFakeEngine : UTEngine
+@property BOOL igniteResult;
+@end
+
+@implementation UTFakeEngine
+
+- (BOOL)ignite {
+    return self.igniteResult;
+}
+
+@end
+
 @interface UTCarTests : XCTestCase {
     UTCar *car;
     UTFakeCarRadio *radio;
+    UTFakeEngine *engine;
 }
 
 @end
@@ -43,8 +56,9 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    engine = [[UTFakeEngine alloc] init];
     radio = [[UTFakeCarRadio alloc] init];
-    car = [[UTCar alloc] initWithRadio:radio];
+    car = [[UTCar alloc] initWithEngine:engine radio:radio];
 }
 
 - (void)tearDown {
@@ -52,27 +66,22 @@
     [super tearDown];
 }
 
-- (void)test_changeRadioStation_returnsNO_ifStationIsNotFound {
-    BOOL changed = [car changeRadioStationTo:@"EuropaFM"];
-    XCTAssertFalse(changed);
+- (void)test_start_returnsNO_ifEngineDoesntIgnite {
+    engine.igniteResult = NO;
+    BOOL started = [car start];
+    XCTAssertFalse(started);
 }
 
-- (void)test_changeRadioStation_returnsNO_ifFrequencyExistsAndRadioReturnsNO {
-    radio.changeFrequencyResult = NO;
-    BOOL changed = [car changeRadioStationTo:@"ProFM"];
-    XCTAssertFalse(changed);
-}
-
-- (void)test_changeRadioStation_returnsYES_ifFrequencyExistsAndRadioReturnsYES {
-    radio.changeFrequencyResult = YES;
-    BOOL changed = [car changeRadioStationTo:@"ProFM"];
-    XCTAssertTrue(changed);
+- (void)test_start_returnsYES_ifEngineDoesIgnite {
+    engine.igniteResult = YES;
+    BOOL started = [car start];
+    XCTAssertTrue(started);
 }
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+        [car start];
     }];
 }
 

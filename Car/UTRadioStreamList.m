@@ -26,8 +26,12 @@
     return self;
 }
 
-- (NSNumber*)frequencyForStation:(NSString*)stationName {
-    return [_stations objectForKey:stationName];
+- (void)frequencyForStationAsync:(NSString*)stationName
+               completionHandler:(void(^)(NSNumber *freq))onComplete {
+    NSNumber *freq = [_stations objectForKey:stationName];
+    if(freq && onComplete) {
+        onComplete(freq);
+    }
 }
 
 - (void)addStation:(NSString*)stationName frequency:(NSNumber*)frequency {

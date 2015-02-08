@@ -9,24 +9,29 @@
 #import "UTCar.h"
 #import "UTRadioStreamList.h"
 
-@implementation UTCar
+@implementation UTCar {
+    BOOL _started;
+}
 
-- (id)initWithRadio:(UTCarRadio*)radio {
+- (id)initWithEngine:(UTEngine*)engine radio:(UTCarRadio*)radio {
     if(self = [super init]) {
+        _engine = engine;
         _radio = radio;
     }
     return self;
 }
 
-- (void)start {
-    
+- (BOOL)start {
+    _started = [self.engine ignite];
+    return _started;
 }
 
-- (BOOL)changeRadioStationTo:(NSString*)stationName {
-    NSNumber *freq = [[UTRadioStreamList sharedInstance] frequencyForStation:stationName];
-    if(freq) {
-        [self.radio changeFrequencyTo:freq.floatValue];
-    }
-    return freq != nil;
+- (void)changeRadioStationTo:(NSString*)stationName {
+    if(!_started) return;
+    [[UTRadioStreamList sharedInstance] frequencyForStationAsync:stationName completionHandler:^(NSNumber *freq) {
+        if(freq) {
+            [self.radio changeFrequencyTo:freq.floatValue];
+        }
+    }];
 }
 @end

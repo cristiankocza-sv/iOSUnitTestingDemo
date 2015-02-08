@@ -10,4 +10,7 @@
 
 @implementation UTSparkPlug
 
+- (BOOL)sparkle {
+    return YES;
+}
 @end

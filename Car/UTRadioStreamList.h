@@ -13,7 +13,13 @@
 }
 
 + (UTRadioStreamList*)sharedInstance;
-- (NSNumber*)frequencyForStation:(NSString*)stationName;
+
+/**
+ * Finds the frequency for a station, if either saved via addStation,
+ * or if the stations webservice returns it
+ */
+- (void)frequencyForStationAsync:(NSString*)stationName
+               completionHandler:(void(^)(NSNumber *freq))onComplete;
 
 - (void)addStation:(NSString*)stationName frequency:(NSNumber*)frequency;
 
