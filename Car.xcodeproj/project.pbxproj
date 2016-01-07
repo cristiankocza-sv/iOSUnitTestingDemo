@@ -21,6 +21,9 @@
 		0FA080001A8677EB0072134E /* UTRadioStreamList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA07FFF1A8677EB0072134E /* UTRadioStreamList.m */; };
 		0FA080031A867A9A0072134E /* UTCarRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA080021A867A9A0072134E /* UTCarRadio.m */; };
 		0FA0800A1A8795140072134E /* CarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA080091A8795140072134E /* CarSpec.m */; };
+		0FF308F71C3E5771002ABE51 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF308F61C3E5771002ABE51 /* Stack.m */; };
+		0FF308FA1C3E5E2A002ABE51 /* StackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF308F91C3E5E2A002ABE51 /* StackTests.m */; };
+		0FF308FC1C3E609C002ABE51 /* StackSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF308FB1C3E609C002ABE51 /* StackSpec.m */; };
 		FBD7DF800E4EE1ACEB05FAE3 /* libPods-CarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBCF674B24289D271E9C4197 /* libPods-CarTests.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,10 @@
 		0FA080011A867A9A0072134E /* UTCarRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCarRadio.h; sourceTree = "<group>"; };
 		0FA080021A867A9A0072134E /* UTCarRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCarRadio.m; sourceTree = "<group>"; };
 		0FA080091A8795140072134E /* CarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarSpec.m; sourceTree = "<group>"; };
+		0FF308F51C3E5771002ABE51 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stack.h; path = Car/Stack.h; sourceTree = "<group>"; };
+		0FF308F61C3E5771002ABE51 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stack.m; path = Car/Stack.m; sourceTree = "<group>"; };
+		0FF308F91C3E5E2A002ABE51 /* StackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackTests.m; sourceTree = "<group>"; };
+		0FF308FB1C3E609C002ABE51 /* StackSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackSpec.m; sourceTree = "<group>"; };
 		3E755232B647E87886CF1CAB /* Pods-CarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CarTests/Pods-CarTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBCF674B24289D271E9C4197 /* libPods-CarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F877F7D8BACB945D7BC202E7 /* Pods-CarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CarTests/Pods-CarTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 		0FA07FBF1A86099B0072134E = {
 			isa = PBXGroup;
 			children = (
+				0FF308F81C3E5777002ABE51 /* Stack */,
 				0FA07FCA1A86099B0072134E /* Car */,
 				0FA07FE71A86099B0072134E /* CarTests */,
 				0FA07FC91A86099B0072134E /* Products */,
@@ -138,6 +146,8 @@
 				0FA07FEA1A86099B0072134E /* UTCarTests.m */,
 				0FA07FE81A86099B0072134E /* Supporting Files */,
 				0FA080091A8795140072134E /* CarSpec.m */,
+				0FF308F91C3E5E2A002ABE51 /* StackTests.m */,
+				0FF308FB1C3E609C002ABE51 /* StackSpec.m */,
 			);
 			path = CarTests;
 			sourceTree = "<group>";
@@ -165,6 +175,15 @@
 				0FA07FFF1A8677EB0072134E /* UTRadioStreamList.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0FF308F81C3E5777002ABE51 /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				0FF308F51C3E5771002ABE51 /* Stack.h */,
+				0FF308F61C3E5771002ABE51 /* Stack.m */,
+			);
+			name = Stack;
 			sourceTree = "<group>";
 		};
 		4B1954E5C64B8820AA540978 /* Pods */ = {
@@ -213,6 +232,7 @@
 				0FA07FE11A86099B0072134E /* Frameworks */,
 				0FA07FE21A86099B0072134E /* Resources */,
 				0FC0175F95D7C8EABC520022 /* Copy Pods Resources */,
+				999EFAF8088C7883006853D0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,6 +332,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		999EFAF8088C7883006853D0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CarTests/Pods-CarTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -327,6 +362,7 @@
 				0FA07FD71A86099B0072134E /* DetailViewController.m in Sources */,
 				0FA080031A867A9A0072134E /* UTCarRadio.m in Sources */,
 				0FA080001A8677EB0072134E /* UTRadioStreamList.m in Sources */,
+				0FF308F71C3E5771002ABE51 /* Stack.m in Sources */,
 				0FA07FFA1A8676460072134E /* UTEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,7 +372,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FA07FEB1A86099B0072134E /* UTCarTests.m in Sources */,
+				0FF308FA1C3E5E2A002ABE51 /* StackTests.m in Sources */,
 				0FA0800A1A8795140072134E /* CarSpec.m in Sources */,
+				0FF308FC1C3E609C002ABE51 /* StackSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
